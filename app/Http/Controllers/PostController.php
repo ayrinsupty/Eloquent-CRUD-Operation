@@ -43,4 +43,20 @@ class PostController extends Controller
         Post::where('id', $id)->delete();
         return back()->with('post_deleted', 'Post has been deleted successfully!');
     }
+
+    // Update Post
+    public function editPost($id)
+    {
+        $post = Post::find($id);
+        return view('edit-post', compact('post'));
+    }
+
+    public function updatePost(Request $request)
+    {
+        $post = Post::find($request->id);
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->save();
+        return back()->with('post_updated', 'Post has been updated successfully!');
+    }
 }

@@ -40,6 +40,7 @@
                                             <td>{{ $post->body }}</td>
                                             <td>
                                                 <a href="/posts/{{ $post->id }}" class="btn btn-info">Details</a>
+                                                <a href="/edit-post/{{ $post->id }}" class="btn btn-success">Edit</a>
                                                 <a href="/delete-post/{{ $post->id }}" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
