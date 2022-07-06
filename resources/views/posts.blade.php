@@ -24,6 +24,7 @@
                                         <th>ID</th>
                                         <th>Post Title</th>
                                         <th>Post Description</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,10 +33,14 @@
                                             <td>{{ $post->id }}</td>
                                             <td>{{ $post->title }}</td>
                                             <td>{{ $post->body }}</td>
+                                            <td>
+                                                <a href="/posts/{{ $post->id }}" class="btn btn-info">Details</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            <a href="/add-post" class="btn btn-success"> Add New Post</a>
                         </div>
                     </div>
                 </div>

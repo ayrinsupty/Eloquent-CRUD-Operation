@@ -23,3 +23,5 @@ Route::get('/add-post', [PostController::class, 'addPost']);
 Route::post('/create-post', [PostController::class, 'createPost'])->name('post.create');
 
 Route::get('/posts', [PostController::class, 'getPost']);
+
+Route::get('/posts/{id}', [PostController::class, 'getPostById']);

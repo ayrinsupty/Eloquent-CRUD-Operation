@@ -29,4 +29,11 @@ class PostController extends Controller
         $posts = Post::orderBy('id', 'DESC')->get();
         return view('posts', compact('posts'));
     }
+
+    // Fetch Post For Specific Id
+    public function getPostById($id)
+    {
+        $post = Post::where('id', $id)->first();
+        return view('single-post', compact('post'));
+    }
 }
