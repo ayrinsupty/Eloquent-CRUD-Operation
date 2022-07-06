@@ -25,3 +25,5 @@ Route::post('/create-post', [PostController::class, 'createPost'])->name('post.c
 Route::get('/posts', [PostController::class, 'getPost']);
 
 Route::get('/posts/{id}', [PostController::class, 'getPostById']);
+
+Route::get('/delete-post/{id}', [PostController::class, 'deletePost']);

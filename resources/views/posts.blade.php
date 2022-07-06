@@ -18,6 +18,11 @@
                             <h3>All Post</h3>
                         </div>
                         <div class="card-body">
+                            @if(Session::has('post_deleted'))
+                                <div class="alert alert-success" role="alert">
+                                    {{Session::get('post_deleted')}}
+                                </div>
+                            @endif
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -35,6 +40,7 @@
                                             <td>{{ $post->body }}</td>
                                             <td>
                                                 <a href="/posts/{{ $post->id }}" class="btn btn-info">Details</a>
+                                                <a href="/delete-post/{{ $post->id }}" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

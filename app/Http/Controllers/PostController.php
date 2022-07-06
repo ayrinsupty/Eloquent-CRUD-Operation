@@ -36,4 +36,11 @@ class PostController extends Controller
         $post = Post::where('id', $id)->first();
         return view('single-post', compact('post'));
     }
+
+    // Delete Post
+    public function deletePost($id)
+    {
+        Post::where('id', $id)->delete();
+        return back()->with('post_deleted', 'Post has been deleted successfully!');
+    }
 }
