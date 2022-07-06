@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/add-post', [PostController::class, 'addPost']);
+
+Route::post('/create-post', [PostController::class, 'createPost'])->name('post.create');
