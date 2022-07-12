@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('add-post');
 });
 
 Route::get('/add-post', [PostController::class, 'addPost']);
@@ -26,8 +26,8 @@ Route::get('/posts', [PostController::class, 'getPost']);
 
 Route::get('/single-post/{id}', [PostController::class, 'getPostById']);
 
-Route::get('/delete-post/{id}', [PostController::class, 'deletePost']);
-
 Route::get('/edit-post/{id}', [PostController::class, 'editPost']);
 
 Route::post('/update-post', [PostController::class, 'updatePost'])->name('post.update');
+
+Route::get('/delete-post/{id}', [PostController::class, 'deletePost']);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2022 at 11:45 AM
+-- Generation Time: Jul 12, 2022 at 12:13 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -58,7 +58,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2022_07_06_060142_create_posts_table', 1);
+(5, '2022_07_06_060142_create_posts_table', 1),
+(6, '2022_07_12_064823_add_image_to_posts', 2);
 
 -- --------------------------------------------------------
 
@@ -100,6 +101,7 @@ CREATE TABLE `posts` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -108,9 +110,12 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `body`, `created_at`, `updated_at`) VALUES
-(1, 'Laravel', 'Laravel Post Description', '2022-07-06 01:50:28', '2022-07-06 01:50:28'),
-(2, 'HTML', 'HTML Post Description', '2022-07-06 01:51:37', '2022-07-06 03:37:46');
+INSERT INTO `posts` (`id`, `title`, `body`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Laravel', 'Laravel Post Description', '1657615893.png', '2022-07-06 01:50:28', '2022-07-12 02:51:33'),
+(2, 'HTML', 'HTML Post Description', '1657615997.png', '2022-07-06 01:51:37', '2022-07-12 02:53:17'),
+(3, 'JavaScript', 'JavaScript Post Description', '1657616016.jpg', '2022-07-12 01:26:07', '2022-07-12 02:53:36'),
+(6, 'JAVA', 'JAVA Post Description', '1657617028.jpg', '2022-07-12 03:10:28', '2022-07-12 03:10:28'),
+(7, 'Python', 'Python Post Description', '1657620731.jpg', '2022-07-12 04:12:11', '2022-07-12 04:12:11');
 
 -- --------------------------------------------------------
 
@@ -187,7 +192,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -199,7 +204,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
