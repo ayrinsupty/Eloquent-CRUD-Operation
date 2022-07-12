@@ -15,7 +15,9 @@
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Edit Post</h3>
+                            <h3>Edit Post
+                                <a href="/posts" class="btn btn-info float-end">Go Back</a>
+                            </h3>
                         </div>
                         <div class="card-body">
                             @if(Session::has('post_updated'))
@@ -23,21 +25,28 @@
                                     {{Session::get('post_updated')}}
                                 </div>
                             @endif
-                            <form action="{{route('post.update')}}" method="POST">
+                            <form action="{{route('post.update')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $post->id }}" />
-                                <div class="form-group">
+                                <div class="form-group mb-3">
                                     <label for="title">Post Title</label>
                                     <input type="text" name="title" class="form-control" placeholder="Enter Post Title" value="{{ $post->title }}"/>
-                                </div><br>
+                                </div>
 
-                                <div class="form-group">
+                                <div class="form-group mb-3">
                                     <label for="body">Post Description</label>
                                     <textarea name="body" class="form-control" rows="3">{{ $post->body }}</textarea>
-                                </div><br>
-                                   
-                                <button type="submit" class="btn btn-success">Update Post</button>
-                                <a href="/posts" class="btn btn-success">Go Back</a>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="image">Image</label>
+                                    <input type="file" name="image" class="form-control"><br>
+                                    <img src="{{ asset('uploads/image/'.$post->image) }}" width="150px" height="100px" alt="image">
+                                </div>
+
+                                <div class="form-group md-3">
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                </div>
                             </form>
                         </div>
                     </div>

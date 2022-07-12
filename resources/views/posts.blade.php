@@ -15,7 +15,9 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>All Post</h3>
+                            <h3>All Post
+                                <a href="/add-post" class="btn btn-info float-end">Add New Post</a>
+                            </h3>
                         </div>
                         <div class="card-body">
                             @if(Session::has('post_deleted'))
@@ -29,6 +31,7 @@
                                         <th>ID</th>
                                         <th>Post Title</th>
                                         <th>Post Description</th>
+                                        <th>Image</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -39,15 +42,17 @@
                                             <td>{{ $post->title }}</td>
                                             <td>{{ $post->body }}</td>
                                             <td>
-                                                <a href="/posts/{{ $post->id }}" class="btn btn-info">Details</a>
-                                                <a href="/edit-post/{{ $post->id }}" class="btn btn-success">Edit</a>
-                                                <a href="/delete-post/{{ $post->id }}" class="btn btn-danger">Delete</a>
+                                                <img src="{{ asset('uploads/image/'.$post->image) }}" width="100px" height="70px" alt="image">
+                                            </td>
+                                            <td>
+                                                <a href="/single-post/{{ $post->id }}" class="btn btn-info btn-sm">Details</a>
+                                                <a href="/edit-post/{{ $post->id }}" class="btn btn-success btn-sm">Edit</a>
+                                                <a href="/delete-post/{{ $post->id }}" class="btn btn-danger btn-sm">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <a href="/add-post" class="btn btn-success"> Add New Post</a>
                         </div>
                     </div>
                 </div>

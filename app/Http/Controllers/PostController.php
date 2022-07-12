@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -17,8 +18,16 @@ class PostController extends Controller
     public function createPost(Request $request)
     {
         $post = new Post();
-        $post->title = $request->title;
-        $post->body = $request->body;
+        $post->title = $request->input('title');
+        $post->body  = $request->input('body');
+        if($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('uploads/image/', $filename);
+            $post->image = $filename;
+        }
         $post->save();
         return back()->with('post_created', 'Post has been created successfully!');
     }
@@ -37,12 +46,6 @@ class PostController extends Controller
         return view('single-post', compact('post'));
     }
 
-    // Delete Post
-    public function deletePost($id)
-    {
-        Post::where('id', $id)->delete();
-        return back()->with('post_deleted', 'Post has been deleted successfully!');
-    }
 
     // Update Post
     public function editPost($id)
@@ -54,9 +57,43 @@ class PostController extends Controller
     public function updatePost(Request $request)
     {
         $post = Post::find($request->id);
-        $post->title = $request->title;
-        $post->body = $request->body;
+        $post->title = $request->input('title');
+        $post->body  = $request->input('body');
+        if($request->hasFile('image'))
+        {
+            $destination = 'uploads/image/'.$post->image;
+            if(File::exists($destination))
+            {
+                File::delete($destination);
+            }
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('uploads/image/', $filename);
+            $post->image = $filename;
+        } else {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('uploads/image/', $filename);
+            $post->image = $filename;
+        }
+
         $post->save();
         return back()->with('post_updated', 'Post has been updated successfully!');
     }
+
+    // Delete Post
+    public function deletePost($id)
+    {
+        $post = Post::find($id);
+        $destination = 'uploads/image/'.$post->image;
+        if(File::exists($destination))
+        {
+            File::delete($destination);
+        }
+        $post->delete();
+        return back()->with('post_deleted', 'Post has been deleted successfully!');
+    }
 }
+

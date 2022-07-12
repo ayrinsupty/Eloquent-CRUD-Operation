@@ -15,7 +15,9 @@
                 <div class="col-md-6 offset-md-3">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Add Post</h3>
+                            <h3>Add Post
+                                <a href="/posts" class="btn btn-info float-end">All Post</a>
+                            </h3>
                         </div>
                         <div class="card-body">
                             @if(Session::has('post_created'))
@@ -23,19 +25,26 @@
                                     {{Session::get('post_created')}}
                                 </div>
                             @endif
-                            <form action="{{route('post.create')}}" method="POST">
+                            <form action="{{route('post.create')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
+                                <div class="form-group mb-3">
                                     <label for="title">Post Title</label>
                                     <input type="text" name="title" class="form-control" placeholder="Enter Post Title" />
-                                </div><br>
+                                </div>
 
-                                <div class="form-group">
+                                <div class="form-group mb-3">
                                     <label for="body">Post Description</label>
                                     <textarea name="body" class="form-control" rows="3"></textarea>
-                                </div><br>
-                                   
-                                <button type="submit" class="btn btn-success">Add Post</button>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="image">Image</label>
+                                    <input type="file" name="image" class="form-control">
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <button type="submit" class="btn btn-success">Add Post</button>
+                                </div>
                             </form>
                         </div>
                     </div>
